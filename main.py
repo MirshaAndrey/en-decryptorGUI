@@ -32,7 +32,8 @@ def decrypt_file():
 # Создание графического интерфейса
 root = tk.Tk()
 root.geometry("300x250")
-root.iconbitmap(default="favicon.ico")
+#root.iconbitmap(default="favicon.ico") #windwos
+#root.iconbitmap('favicon.ico') #mac
 root.title("File En/Decryptor")
 
 password_label = tk.Label(root, text="Enter Password:")
@@ -43,7 +44,6 @@ password_entry.pack()
 
 encrypt_button = tk.Button(root, text="Encrypt File", command=encrypt_file)
 encrypt_button.pack()
-
 
 decrypt_button = tk.Button(root, text="Decrypt File", command=decrypt_file)
 decrypt_button.pack()
