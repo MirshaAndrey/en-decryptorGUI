@@ -33,7 +33,7 @@ def decrypt_file():
 root = tk.Tk()
 root.geometry("300x250")
 #root.iconbitmap(default="favicon.ico") #windwos
-#root.iconbitmap('favicon.ico') #mac
+root.iconbitmap('favicon.ico') #mac
 root.title("File En/Decryptor")
 
 password_label = tk.Label(root, text="Enter Password:")
