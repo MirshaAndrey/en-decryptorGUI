@@ -25,7 +25,7 @@ def decrypt_file():
 
     file_path = filedialog.askopenfilename()
     if file_path:
-        decrypted_file_path = file_path.replace(".aes", "_out")
+        decrypted_file_path = file_path.replace(".aes", "")
         pyAesCrypt.decryptFile(file_path, decrypted_file_path, password)
         messagebox.showinfo("Success", "File decrypted successfully!")
 
