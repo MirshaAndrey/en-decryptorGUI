@@ -1,6 +1,4 @@
 # File En/Decryptor User Guide
-
-# en-decryptorGUI
 pyaescrypt + liteGUI(Tkinter)
 app for encrypt & decrypt your files
 
