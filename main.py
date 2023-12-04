@@ -1,37 +1,43 @@
 import tkinter as tk
-import pyAesCrypt
 from tkinter import filedialog
 from tkinter import messagebox
+import pyAesCrypt
 
-# Функция для шифрования файла
 def encrypt_file():
     password = password_entry.get()
     if not password:
         messagebox.showerror("Error", "Please enter a password.")
         return
 
-    file_path = filedialog.askopenfilename()
+    file_path = filedialog.askopenfilename(title="Select File to Encrypt",
+                                            filetypes=[("All Files", "*.*")])
     if file_path:
         encrypted_file_path = file_path + ".aes"
         pyAesCrypt.encryptFile(file_path, encrypted_file_path, password)
-        messagebox.showinfo("Success", "File encrypted successfully!")
+        show_completion_message("Encryption", encrypted_file_path)
 
-# Функция для дешифрования файла
 def decrypt_file():
     password = password_entry.get()
     if not password:
         messagebox.showerror("Error", "Please enter a password.")
         return
 
-    file_path = filedialog.askopenfilename()
+    file_path = filedialog.askopenfilename(title="Select File to Decrypt",
+                                            filetypes=[("AES Encrypted Files", "*.aes")])
     if file_path:
         decrypted_file_path = file_path.replace(".aes", "")
-        pyAesCrypt.decryptFile(file_path, decrypted_file_path, password)
-        messagebox.showinfo("Success", "File decrypted successfully!")
+        try:
+            pyAesCrypt.decryptFile(file_path, decrypted_file_path, password)
+            show_completion_message("Decryption", decrypted_file_path)
+        except ValueError:
+            messagebox.showerror("Error", "Invalid password. Decryption failed.")
 
-# Создание графического интерфейса
+def show_completion_message(action, file_path):
+    message = f"{action} completed successfully!\nFile created at:\n{file_path}"
+    messagebox.showinfo("Success", message)
+
 root = tk.Tk()
-root.geometry("300x250")
+root.geometry("300x300")
 #root.iconbitmap(default="favicon.ico") #windows
 root.iconbitmap('favicon.ico') #mac
 root.title("File En/Decryptor")
@@ -39,7 +45,7 @@ root.title("File En/Decryptor")
 password_label = tk.Label(root, text="Enter Password:")
 password_label.pack()
 
-password_entry = tk.Entry(root, show="*")  # Пароль будет скрыт
+password_entry = tk.Entry(root, show="*")
 password_entry.pack()
 
 encrypt_button = tk.Button(root, text="Encrypt File", command=encrypt_file)
