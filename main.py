@@ -32,7 +32,7 @@ def decrypt_file():
 # Создание графического интерфейса
 root = tk.Tk()
 root.geometry("300x250")
-#root.iconbitmap(default="favicon.ico") #windwos
+#root.iconbitmap(default="favicon.ico") #windows
 root.iconbitmap('favicon.ico') #mac
 root.title("File En/Decryptor")
 
