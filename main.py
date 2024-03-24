@@ -13,7 +13,8 @@ def encrypt_file():
                                             filetypes=[("All Files", "*.*")])
     if file_path:
         encrypted_file_path = file_path + ".aes"
-        pyAesCrypt.encryptFile(file_path, encrypted_file_path, password)
+        bufferSize = 64 * 1024
+        pyAesCrypt.encryptFile(file_path, encrypted_file_path, password, bufferSize)
         show_completion_message("Encryption", encrypted_file_path)
 
 def decrypt_file():
